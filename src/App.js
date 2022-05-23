@@ -4,6 +4,10 @@ import Blogs from './Pages/Blogs/Blogs';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Home from './Pages/Home/Home';
 import Navbar from './Pages/Shared/Navbar';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import Purchase from './Pages/Purchase/Purchase';
+
 
 function App() {
   return (
@@ -14,7 +18,9 @@ function App() {
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
+        <Route path='/purchase' element={<Purchase></Purchase>}></Route>
       </Routes>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

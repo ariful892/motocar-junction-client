@@ -1,0 +1,56 @@
+[
+    {
+        "id": "628b42a7a079fba64995f97f",
+        "name": "Engine",
+        "img": "https://i.ibb.co/7gr6tbH/engine.png",
+        "description": "The engine is a power generator/power plant or a motor, which provides power to drive the automobile.",
+        "minimumOrder": 10,
+        "availableQuantity": 800,
+        "price": 10000
+    },
+    {
+        "id": "628b42a7bc50836588d52b3f",
+        "name": "Battery",
+        "img": "https://i.ibb.co/6WPxrwx/battery.png",
+        "description": "An automotive battery or car battery is a rechargeable battery that is used to start a motor vehicle.",
+        "minimumOrder": 10,
+        "availableQuantity": 750,
+        "price": 7200
+    },
+    {
+        "id": "628b42a7bf67916ce09ae4d3",
+        "name": "Steering wheel",
+        "img": "https://i.ibb.co/176XYp2/steer.png",
+        "description": "A steering wheel also called a driving wheel or a hand wheel is a type of steering control in vehicles.",
+        "minimumOrder": 10,
+        "availableQuantity": 800,
+        "price": 4500
+    },
+    {
+        "id": "628b42a7c4e308487c0c0ada",
+        "name": "Headlights",
+        "img": "https://i.ibb.co/WFRqvPX/lights.png",
+        "description": "Car Headlights are one of the most essential parts of the car when driving down a dark and dingy road.",
+        "minimumOrder": 10,
+        "availableQuantity": 900,
+        "price": 2200
+    },
+    {
+        "id": "628b42a769e62870f3f8d4eb",
+        "name": "Fuel Gauge",
+        "img": "https://i.ibb.co/cgRb3L6/fuel.png",
+        "description": "Fuel gauge is an instrument used to indicate the amount of fuel in a fuel tank.",
+        "minimumOrder": 10,
+        "availableQuantity": 730,
+        "price": 3500
+    },
+    {
+        "id": "628b42a729812ace617f089c",
+        "name": "Brakes",
+        "img": "https://i.ibb.co/SPnw8L9/brake.png",
+        "description": "Brake is a mechanical device that inhibits motion by absorbing energy from a moving system.",
+        "minimumOrder": 10,
+        "availableQuantity": 650,
+        "price": 6500
+    }
+]
