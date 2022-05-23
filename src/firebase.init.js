@@ -7,12 +7,12 @@ import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyD8-maGa1D8ai9gK-cZAflyFkzNbNhqqNI",
-    authDomain: "motocar-junction.firebaseapp.com",
-    projectId: "motocar-junction",
-    storageBucket: "motocar-junction.appspot.com",
-    messagingSenderId: "434431740565",
-    appId: "1:434431740565:web:27446ebb71a5712fe0699c"
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
 };
 
 // Initialize Firebase

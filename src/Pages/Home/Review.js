@@ -6,15 +6,15 @@ const Review = ({ review }) => {
 
     return (
         <div>
-            <p><small>{comment}</small></p>
-            <div className='flex items-center mt-5'>
+            <div className='flex items-center justify-center mt-5'>
                 <div className="avatar">
                     <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                         <img src={img} alt="" />
                     </div>
                 </div>
-                <div className='pl-2'>
+                <div className='text-left pl-3'>
                     <h4 className='font-bold'>{name}</h4>
+                    <p><small>{comment}</small></p>
                     <p>{rating}</p>
                 </div>
             </div>
