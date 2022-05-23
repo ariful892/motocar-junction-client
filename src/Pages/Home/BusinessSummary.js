@@ -35,7 +35,7 @@ const BusinessSummary = () => {
     ]
 
     return (
-        <div className='mt-24 px-5 '>
+        <div className='my-24 px-5 '>
             <h2 className='text-primary text-3xl'>Business Summary</h2>
             <div className='flex justify-center'>
                 <div className='justify-center items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
