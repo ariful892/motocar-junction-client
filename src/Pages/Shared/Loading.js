@@ -2,7 +2,7 @@ import React from 'react';
 
 const Loading = () => {
     return (
-        <button class="btn loading bg-indigo-500">loading</button>
+        <button className="btn loading bg-indigo-500">loading</button>
     );
 };
 

@@ -1,12 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
+
+    const [user, loading, error] = useAuthState(auth);
+
+    const handleSignOut = () => {
+        signOut(auth);
+        localStorage.removeItem('accessToken');
+    }
 
     const menuItems = <>
         <li><Link to='/home'>Home</Link></li>
         <li><Link to='/dashboard'>Dashboard</Link></li>
         <li><Link to='/blogs'>Blogs</Link></li>
+
     </>
 
     return (
@@ -28,6 +39,11 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end pr-3">
+                <li className='list-none'>{user ?
+                    <button onClick={handleSignOut} className="btn btn-ghost text-red-500">Signout</button>
+                    :
+                    <Link to='/login'>Login</Link>
+                }</li>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </div>
 
