@@ -1,12 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [
         createUserWithEmailAndPassword,
         user,
@@ -20,15 +21,15 @@ const Register = () => {
     let passError
     let registerError;
 
-    if (user) {
+    if (user || googleUser) {
         navigate('/home');
     }
 
-    if (error || updateError) {
-        registerError = <p className='text-red-500'> {error?.message || updateError?.message}</p>;
+    if (error || googleError || updateError) {
+        registerError = <p className='text-red-500'> {error?.message || googleError?.message || updateError?.message}</p>;
     }
 
-    if (loading || updating) {
+    if (loading || googleLoading || updating) {
         return <Loading></Loading>
     }
 
@@ -39,6 +40,10 @@ const Register = () => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
     };
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle();
+    }
 
     return (
         <div className='flex justify-center items-center'>
@@ -135,7 +140,7 @@ const Register = () => {
                                 {errors.confirmpass?.type === 'required' && <span className="label-text-alt text-red-500">{errors.confirmpass.message}</span>}
                                 {errors.confirmpass?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.confirmpass.message}</span>}
                             </label>
-                            <p className='text-red-500 text-left pl-1 mb-2'><small>Forgot Password ?</small></p>
+
                         </div>
 
                         {registerError}
@@ -144,7 +149,8 @@ const Register = () => {
                         <input className='btn btn-secondary text-white w-full max-w-xs' type="submit" value='SIGN UP' />
                     </form>
                     <p>Already have an account? <Link to='/login' className='pl-1 text-sm text-primary'>Login</Link></p>
-
+                    <div className="divider">OR</div>
+                    <button className="btn" onClick={handleGoogleSignIn}>SIGN IN WITH GOOGLE</button>
                 </div>
             </div>
         </div>
