@@ -7,6 +7,7 @@ import Navbar from './Pages/Shared/Navbar';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Purchase from './Pages/Purchase/Purchase';
+import NotFound from './Pages/NotFound/NotFound';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='/purchase' element={<Purchase></Purchase>}></Route>
+        <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <ToastContainer></ToastContainer>
     </div>

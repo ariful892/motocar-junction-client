@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading';
 import Part from './Part';
 
 const Parts = () => {
 
-    // const { data:parts } = useQuery('part', () => fetch('http://localhost:5000/part').then(res => res.json()));
+    const { data: parts, isLoading } = useQuery('part', () => fetch('http://localhost:5000/part').then(res => res.json()));
 
-    const [parts, setParts] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:5000/part')
-            .then(res => res.json())
-            .then(data => setParts(data));
-    }, []);
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
     return (
         <div className='my-24 px-5'>
