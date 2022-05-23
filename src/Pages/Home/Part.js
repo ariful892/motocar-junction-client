@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Part = ({ part }) => {
 
@@ -11,14 +11,11 @@ const Part = ({ part }) => {
                 <img src={img} alt="Shoes" className="rounded-xl" />
             </figure>
             <div className="card-body items-center text-center">
-                <h2 className="card-title">{name}</h2>
+                <h2 className="card-title text-primary">{name}</h2>
                 <p>{description}</p>
                 <p>Minimum Order: {minimumOrder}</p>
                 <p>Available Quantity: {availableQuantity}</p>
                 <p>Price: {price}</p>
-                <div className="card-actions">
-
-                </div>
 
             </div>
             <Link to={'/purchase'} className="btn btn-primary w-full hover:bg-secondary border-0 font-bold">Purchase</Link>
