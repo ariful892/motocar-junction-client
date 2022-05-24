@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Part = ({ part }) => {
 
-    const { name, img, description, minimumOrder, availableQuantity, price } = part;
+    const { _id, name, img, description, minimumOrder, availableQuantity, price } = part;
 
     return (
         <div className="card bg-base-100 shadow-xl ">
@@ -18,7 +18,7 @@ const Part = ({ part }) => {
                 <p>Price: {price}</p>
 
             </div>
-            <Link to={'/purchase'} className="btn btn-primary w-full hover:bg-secondary border-0 font-bold">Purchase</Link>
+            <Link to={`/purchase/${_id}`} className="btn btn-primary w-full hover:bg-secondary border-0 font-bold">Purchase</Link>
         </div>
     );
 };
