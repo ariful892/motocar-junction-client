@@ -136,7 +136,7 @@ const Register = () => {
                                     }
                                 })}
                             />
-                            <label className="label mb-0 pb-0">
+                            <label className="label ">
                                 {errors.confirmpass?.type === 'required' && <span className="label-text-alt text-red-500">{errors.confirmpass.message}</span>}
                                 {errors.confirmpass?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.confirmpass.message}</span>}
                             </label>
@@ -146,7 +146,7 @@ const Register = () => {
                         {registerError}
                         {passError}
 
-                        <input className='btn btn-secondary text-white w-full max-w-xs' type="submit" value='SIGN UP' />
+                        <input className='btn btn-secondary text-white w-full max-w-xs mt-2' type="submit" value='SIGN UP' />
                     </form>
                     <p>Already have an account? <Link to='/login' className='pl-1 text-sm text-primary'>Login</Link></p>
                     <div className="divider">OR</div>

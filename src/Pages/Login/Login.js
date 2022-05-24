@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
@@ -17,12 +17,14 @@ const Login = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
 
     let loginError;
 
     if (user) {
-        navigate('/home');
+        navigate(from, { replace: true });
     }
 
 
@@ -104,11 +106,11 @@ const Login = () => {
                                     }
                                 })}
                             />
-                            <label className="label">
+                            <label className="label mb-0 pb-0">
                                 {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                                 {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                             </label>
-                            <p className='text-red-500 text-left pl-1 mb-2'><small>Forgot Password ?</small></p>
+                            <p className='text-red-500 text-left pl-1 mb-3'><small>Forgot Password ?</small></p>
                         </div>
                         {loginError}
 
