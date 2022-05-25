@@ -20,7 +20,7 @@ const usePartDetails = partId => {
         return <Loading></Loading>
     }
 
-    return { part, setPart };
+    return [part, setPart];
 
 }
 

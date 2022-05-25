@@ -1,11 +1,11 @@
-import { async } from '@firebase/util';
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { set } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
-import usePartDetails from '../../hooks/usePartDetails';
 
 import Loading from '../Shared/Loading';
 
@@ -13,12 +13,11 @@ const Purchase = () => {
 
     const [user, loading, error] = useAuthState(auth);
     const { partId } = useParams();
-
-    // const { data: part, isLoading, qError } = useQuery('part', () => fetch(`http://localhost:5000/part/${partId}`).then(res => res.json()));
-    // const { part, setPart } = usePartDetails(partId);
     const [isLoading, setIsLoding] = useState(true);
     const [part, setPart] = useState({});
     const [orderError, setOrderError] = useState('');
+    const orderRef = useRef('');
+    let updatedPart;
 
 
     useEffect(() => {
@@ -31,46 +30,77 @@ const Purchase = () => {
     }, [partId]);
 
     let { name, img, description, minimumOrder, availableQuantity, price } = part;
-    // let orderQ = part.orderQuantity;
-    // let [orderQuantity, setOrderQuantity] = useState(minimumOrder);
-    const orderRef = useRef('');
-
-
+    let newOrderQuantity = minimumOrder;
 
     if (loading) {
         return <Loading></Loading>
 
     }
 
-    let newOrderQuantiry = minimumOrder;
-    let updatedPart;
-
     const handleOrder = () => {
-        newOrderQuantiry = orderRef.current.value;
 
+        newOrderQuantity = orderRef.current.value;
 
-        if (newOrderQuantiry < minimumOrder) {
-            return setOrderError(<p className='text-red-500'>Please order al least 10 products</p>);
+        if (newOrderQuantity < minimumOrder) {
+            return setOrderError(<p className='text-red-500'>Please order minimum 10 products</p>);
 
         }
-        if (newOrderQuantiry > availableQuantity) {
+        if (newOrderQuantity > availableQuantity) {
             return setOrderError(<p className='text-red-500'>Sorry we don't have this much product in stock. Try later!</p>);
 
         }
-        minimumOrder = newOrderQuantiry;
+        setOrderError('');
+        minimumOrder = newOrderQuantity;
         updatedPart = { ...part, minimumOrder };
         setPart(updatedPart);
     }
 
+    const handleBook = event => {
+
+        event.preventDefault();
+        const name = user.displayName;
+        const email = user.email;
+        const address = event.target.address.value;
+        const phone = event.target.phone.value;
+        const partsName = part.name;
+        const orderQuantity = part.minimumOrder;
+
+        const booking = {
+            name,
+            email,
+            address,
+            phone,
+            partId,
+            partsName,
+            minimumOrder
+        }
+
+        console.log(booking);
+
+        fetch('http://localhost:5000/booking', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast('Booking done!');
+            })
+
+    }
+
     return (
-        <div className='mt-12 px-10'>
+        <div className='my-16 px-10'>
             <div className="card lg:card-side bg-base-100 shadow-xl">
                 <figure><img src={img} alt="Album" /></figure>
                 <div className="card-body text-left">
                     <h2 className="card-title text-secondary text-4xl">{name}</h2>
                     <p>{description}</p>
                     <p>Price: {price}</p>
-                    <p>Minimum Order Quantity: {newOrderQuantiry}</p>
+                    <p>Minimum Order Quantity: {newOrderQuantity}</p>
                     <p>Available Quantity: {availableQuantity}</p>
                     <div className='mt-4'>
                         <h3 className='font-bold'>Set Order Quantity</h3>
@@ -81,12 +111,12 @@ const Purchase = () => {
                 </div>
             </div>
 
-            <form className='mt-5 text-center'>
+            <form className='mt-5 text-center' onSubmit={handleBook}>
                 <h3 className='text-secondary text-lg font-bold'>Buyer Info</h3>
                 <input type="text" disabled value={user.displayName} className="input input-bordered input-info w-full max-w-xs mt-2" /> <br />
                 <input type="text" disabled value={user.email} className="input input-bordered input-info w-full max-w-xs mt-2" /><br />
-                <input type="text" placeholder='Your Address' className="input input-bordered input-info w-full max-w-xs mt-2" /><br />
-                <input type="number" placeholder='Phone Number' className="input input-bordered input-info w-full max-w-xs mt-2" /><br />
+                <input type="text" name='address' placeholder='Your Address' className="input input-bordered input-info w-full max-w-xs mt-2" /><br />
+                <input type="number" name='phone' placeholder='Phone Number' className="input input-bordered input-info w-full max-w-xs mt-2" /><br />
                 <input className="btn btn-secondary btn-sm mt-3" type="submit" value="Book" />
             </form>
         </div>
