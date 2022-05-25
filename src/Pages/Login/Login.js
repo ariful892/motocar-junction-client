@@ -23,7 +23,7 @@ const Login = () => {
 
     let loginError;
 
-    if (user) {
+    if (user || googleUser) {
         navigate(from, { replace: true });
     }
 
@@ -60,7 +60,7 @@ const Login = () => {
         <div className='flex justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <h2 className="text-center text-primary text-3xl font-bold">Login</h2>
+                    <h2 className="text-center text-secondary text-3xl font-bold">Login</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
 
                         <div className="form-control w-full max-w-xs">
@@ -114,7 +114,7 @@ const Login = () => {
                         </div>
                         {loginError}
 
-                        <input className='btn btn-primary w-full max-w-xs' type="submit" value='LOGIN' />
+                        <input className='btn btn-secondary text-white w-full max-w-xs' type="submit" value='LOGIN' />
                     </form>
                     <p>New to Doctors Portal?<Link to='/register' className='pl-1 text-sm text-primary'>Create new account</Link></p>
                     <div className="divider">OR</div>

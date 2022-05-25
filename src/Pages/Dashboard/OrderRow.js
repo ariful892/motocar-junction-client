@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const OrderRow = ({ order, index, setDeleteOrder }) => {
 
+    const [paid, setPaid] = useState(false);
     const { _id, name, email, address, phone, partsName } = order;
 
     const handleCancel = () => {
@@ -21,8 +23,12 @@ const OrderRow = ({ order, index, setDeleteOrder }) => {
             <td>{phone}</td>
             <td>{partsName}</td>
             <td>
-                <button className='btn btn-success btn-xs mr-2'>Pay</button>
-                <label onClick={() => setDeleteOrder(order)} htmlFor="delete-confirm-modal" className='btn btn-xs bg-red-600 border-0'>Cancel</label>
+                {!paid ?
+                    <Link to={`/dashboard/payment/${_id}`}><button className='btn btn-success btn-xs mr-2'>Pay</button></Link>
+                    :
+                    <span className='text-success mr-2'>Paid</span>
+                }
+                {!paid && <label onClick={() => setDeleteOrder(order)} htmlFor="delete-confirm-modal" className='btn btn-xs bg-red-600 border-0'>Cancel</label>}
             </td>
         </tr>
 

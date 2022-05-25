@@ -12,7 +12,7 @@ const MyOrders = () => {
     const [deleteOrder, setDeleteOrder] = useState(null);
 
 
-    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking?email=${user.email}`).then(res => res.json()));
+    const { data: orders, isLoading, refetch } = useQuery(['order', user.email], () => fetch(`http://localhost:5000/booking?email=${user.email}`).then(res => res.json()));
 
     if (isLoading || loading) {
         return <Loading></Loading>
@@ -32,7 +32,7 @@ const MyOrders = () => {
                             <th>Address</th>
                             <th>Phone</th>
                             <th>Product</th>
-                            <th>Action</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
