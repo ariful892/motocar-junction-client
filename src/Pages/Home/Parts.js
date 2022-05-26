@@ -4,6 +4,7 @@ import Part from './Part';
 
 const Parts = () => {
 
+    // https://frozen-gorge-46569.herokuapp.com/
     const { data: parts, isLoading } = useQuery('part', () => fetch('http://localhost:5000/part/slice', {
         method: 'GET',
         headers: {

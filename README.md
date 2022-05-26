@@ -1,6 +1,41 @@
-# Getting Started with Create React App
+# MotoCar Junction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## The website live link (https://motocar-junction.web.app/
+
+## Features and functionality
+
+- It's a single page application.
+- There are 8 pages in this application.
+- In Home page there are 6 section. Navbar, Website title and banner, Products, Reviews, History and Report section.
+- Header and Footer are kept as shared component .
+- Dashboard page is kept as protected route. User have to login to the website to view this page.
+- User will not be able to see the Dashboard if he/she is signed out.
+- In Dashboard route there are some nested route.
+- There are two types access in Dashboard page. One for user and another one for Admin.
+- Users will see My Orders, My Profile and Add Review route.
+- Admin will see Manage Orders, Manage Products, Add products, Manage Users route.
+- In blogs page discussed about some javascript and nodejs concepts.
+- In My Portfolio page my personal info has been given.
+- And also added a not found route.
+
+## Technologies (Frameworks and libraries) for client side
+
+- React Router
+- React Firebase hooks
+- React Bootstrap
+- React Toastify
+- React hook form
+- Tailwind css
+- DaisyUi
+
+## Technologies (Frameworks and libraries) for client side
+
+- Node js
+- Express js
+- cors
+- dotenv
+- JWT
+- mongodb
 
 ## Available Scripts
 
