@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -25,6 +25,7 @@ const Login = () => {
 
     let loginError;
 
+
     if (token) {
         navigate(from, { replace: true });
     }
@@ -48,15 +49,8 @@ const Login = () => {
     }
 
 
-    // const handleForgetPassword = async () => {
-    //     const email = emailRef.current.value;
-    //     console.log(email);
-    //     if (!email) {
-    //         return alert('Please Enter Email');
-    //     }
-    //     await sendPasswordResetEmail(email);
-    //     alert('Sent email');
-    // }
+
+
 
     return (
         <div className='flex justify-center items-center'>
@@ -112,7 +106,7 @@ const Login = () => {
                                 {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                                 {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                             </label>
-                            <p className='text-red-500 text-left pl-1 mb-3'><small>Forgot Password ?</small></p>
+                            <button className='btn btn-link btn-xs text-red-500 text-left pl-1 mb-3'>Forgot Password ?</button>
                         </div>
                         {loginError}
 

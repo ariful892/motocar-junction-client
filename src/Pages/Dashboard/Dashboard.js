@@ -7,7 +7,7 @@ import Loading from '../Shared/Loading';
 
 const Dashboard = () => {
 
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const [admin] = useAdmin(user);
 
     if (loading) {
