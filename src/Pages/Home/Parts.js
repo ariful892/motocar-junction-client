@@ -4,7 +4,7 @@ import Part from './Part';
 
 const Parts = () => {
 
-    const { data: parts, isLoading } = useQuery('part', () => fetch('http://localhost:5000/part', {
+    const { data: parts, isLoading } = useQuery('part', () => fetch('http://localhost:5000/part/slice', {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -14,6 +14,7 @@ const Parts = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
+
 
     return (
         <div className='my-24 px-5'>
