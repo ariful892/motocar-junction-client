@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import Loading from '../Shared/Loading';
+import Loading from '../../Shared/Loading';
 import UserRow from './UserRow';
 
 const ManageUsers = () => {
@@ -18,7 +18,7 @@ const ManageUsers = () => {
 
     return (
         <div>
-            <div className="text-2xl">Manage Users {users.length}</div>
+            <div className="text-2xl text-secondary my-3">Manage Users</div>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>

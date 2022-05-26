@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
-import Loading from '../Shared/Loading';
 import OrderRow from './OrderRow';
 import DeleteOrderModal from './DeleteOrderModal';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../Shared/Loading';
 
 const MyOrders = () => {
 
