@@ -7,7 +7,7 @@ import Loading from '../Shared/Loading';
 
 const AddReview = () => {
 
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     const imageStorageKey = '6f102cbc31f4a3f52f9ee8f089c14fd8';
@@ -39,7 +39,7 @@ const AddReview = () => {
                     console.log(review);
 
                     // send review to database
-                    fetch('http://localhost:5000/review', {
+                    fetch('https://frozen-gorge-46569.herokuapp.com/review', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

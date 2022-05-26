@@ -7,7 +7,7 @@ import Loading from '../Shared/Loading';
 
 const MyProfile = () => {
 
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
 
@@ -38,7 +38,7 @@ const MyProfile = () => {
         console.log(profile);
 
         // send review to database
-        fetch('http://localhost:5000/profile', {
+        fetch('https://frozen-gorge-46569.herokuapp.com/profile', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

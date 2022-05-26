@@ -1,134 +1,81 @@
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import React, { useEffect, useState } from 'react';
+
+
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 const CheckoutForm = ({ order }) => {
 
-    const stripe = useStripe();
-    const elements = useElements();
-    const [cardError, setCardError] = useState('');
-    const [success, setSuccess] = useState('');
-    const [processing, setProcessing] = useState(false);
-    const [transactionId, setTransactionId] = useState('');
-    const [clientSecret, setClientSecret] = useState('');
 
-    const { _id, price, patient, patientName } = order;
+    const { register, formState: { errors }, handleSubmit } = useForm();
 
-    useEffect(() => {
-        fetch('https://secret-dusk-46242.herokuapp.com/create-payment-intent', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-            },
-            body: JSON.stringify({ price })
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data?.clientSecret) {
-                    setClientSecret(data.clientSecret);
-                }
-            });
-
-    }, [price])
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        if (!stripe || !elements) {
-            return;
-        }
-
-        const card = elements.getElement(CardElement);
-
-        if (card === null) {
-            return;
-        }
-
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
-            type: 'card',
-            card
-        });
-
-        setCardError(error?.message || '')
-        setSuccess('');
-        setProcessing(true);
-        // confirm card payment
-        const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
-            clientSecret,
-            {
-                payment_method: {
-                    card: card,
-                    billing_details: {
-                        name: patientName,
-                        email: patient
-                    },
-                },
-            },
-        );
-
-        if (intentError) {
-            setCardError(intentError?.message);
-            setProcessing(false);
-        }
-        else {
-            setCardError('');
-            setTransactionId(paymentIntent.id);
-            console.log(paymentIntent);
-            setSuccess('Congrats! Your payment is completed.')
-
-            //store payment on database
-            const payment = {
-                appointment: _id,
-                transactionId: paymentIntent.id
-            }
-            fetch(`https://secret-dusk-46242.herokuapp.com/booking/${_id}`, {
-                method: 'PATCH',
-                headers: {
-                    'content-type': 'application/json',
-                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-                },
-                body: JSON.stringify(payment)
-            }).then(res => res.json())
-                .then(data => {
-                    setProcessing(false);
-                    console.log(data);
-                })
-
-        }
+    const handlePay = () => {
+        toast.success('Your payment is done')
     }
+
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <CardElement
-                    options={{
-                        style: {
-                            base: {
-                                fontSize: '16px',
-                                color: '#424770',
-                                '::placeholder': {
-                                    color: '#aab7c4',
-                                },
-                            },
-                            invalid: {
-                                color: '#9e2146',
-                            },
-                        },
-                    }}
-                />
-                <button className='btn btn-success btn-sm mt-4' type="submit" disabled={!stripe || !clientSecret || success}>
-                    Pay
-                </button>
-            </form>
-            {
-                cardError && <p className='text-red-500'>{cardError}</p>
-            }
-            {
-                success && <div className='text-green-500'>
-                    <p>{success}  </p>
-                    <p>Your transaction Id: <span className="text-orange-500 font-bold">{transactionId}</span> </p>
+        <div className='flex justify-center'>
+            <form onSubmit={handleSubmit()}>
+
+                <div className="form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Name</span>
+                    </label>
+                    <input type="text"
+                        value={order.name}
+                        disabled
+                        className="input w-80 input-bordered w-full max-w-xs"
+                        {...register("name", {
+                            required: {
+                                value: true,
+                                message: 'Name is Required'
+                            }
+                        })}
+                    />
+
                 </div>
-            }
-        </>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Parts Id</span>
+                    </label>
+                    <input type="text"
+                        value={order.partId}
+                        className="input input-bordered w-full max-w-xs"
+                        {...register("partId", {
+                            required: {
+                                value: true,
+                                message: 'Email is Required'
+                            }
+                        })}
+                    />
+
+                </div>
+
+                <div className="form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Price</span>
+                    </label>
+                    <input type="number"
+                        placeholder='Enter Price'
+                        className="input input-bordered w-full max-w-xs"
+                        {...register("price", {
+                            required: {
+                                value: true,
+                                message: 'Price is Required'
+                            }
+                        })}
+                    />
+                    <label className="label">
+                        {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+                        {errors.price?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.price.message}</span>}
+                    </label>
+                </div>
+
+
+                <input onClick={handlePay} className='btn btn-secondary text-white w-full max-w-xs mt-2' type="submit" value='Pay' />
+            </form>
+        </div>
+
     );
 };
 

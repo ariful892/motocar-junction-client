@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import Loading from '../../Shared/Loading';
 
@@ -14,7 +13,7 @@ const ManageProductsRow = ({ part, refetch, index }) => {
 
     const handleRemove = id => {
         setIsLoading(true)
-        fetch(`http://localhost:5000/part/${id}`, {
+        fetch(`https://frozen-gorge-46569.herokuapp.com/part/${id}`, {
             method: 'Delete',
             headers: {
                 'content-type': 'application.json'

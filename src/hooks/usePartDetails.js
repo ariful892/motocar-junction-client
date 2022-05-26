@@ -8,7 +8,7 @@ const usePartDetails = partId => {
     const [part, setPart] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:5000/part/${partId}`)
+        fetch(`https://frozen-gorge-46569.herokuapp.com/part/${partId}`)
             .then(res => res.json())
             .then(data => {
                 setPart(data);

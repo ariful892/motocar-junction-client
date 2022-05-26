@@ -5,7 +5,7 @@ import ManageProductsRow from './ManageProductsRow';
 
 const ManageProducts = () => {
 
-    const { data: parts, isLoading, refetch } = useQuery('parts', () => fetch('http://localhost:5000/part', {
+    const { data: parts, isLoading, refetch } = useQuery('parts', () => fetch('https://frozen-gorge-46569.herokuapp.com/part', {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

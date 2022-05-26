@@ -6,7 +6,7 @@ const DeleteOrderModal = ({ deleteOrder, refetch, setDeleteOrder }) => {
     const { _id, partsName } = deleteOrder;
 
     const handleDelete = () => {
-        fetch(`http://localhost:5000/booking/${_id}`, {
+        fetch(`https://frozen-gorge-46569.herokuapp.com/booking/${_id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())

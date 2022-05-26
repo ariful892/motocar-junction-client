@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
@@ -10,12 +10,12 @@ import Loading from '../Shared/Loading';
 
 const MyOrders = () => {
 
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const [deleteOrder, setDeleteOrder] = useState(null);
     const navigate = useNavigate();
 
 
-    const { data: orders, isLoading, refetch } = useQuery(['order', user.email], () => fetch(`http://localhost:5000/booking/${user.email}`, {
+    const { data: orders, isLoading, refetch } = useQuery(['order', user.email], () => fetch(`https://frozen-gorge-46569.herokuapp.com/booking?email=${user.email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleRight, faArrowCircleRight, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import profile from '../../assests/profile.jpg';
-import { Link } from 'react-router-dom';
+
 
 const MyPortfolio = () => {
     return (

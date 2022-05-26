@@ -27,7 +27,7 @@ const AddProduct = () => {
         console.log(part);
 
         // send review to database
-        fetch('http://localhost:5000/part', {
+        fetch('https://frozen-gorge-46569.herokuapp.com/part', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

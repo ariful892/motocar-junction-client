@@ -7,7 +7,7 @@ const OrderRow = ({ order, index, setDeleteOrder }) => {
     const { _id, name, email, address, phone, partsName } = order;
 
     const handleCancel = () => {
-        fetch(`http://localhost:5000/booking/${_id}`, {
+        fetch(`https://frozen-gorge-46569.herokuapp.com/booking/${_id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())

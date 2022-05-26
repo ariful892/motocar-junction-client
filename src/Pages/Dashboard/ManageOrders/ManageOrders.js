@@ -1,12 +1,11 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import Loading from '../../Shared/Loading';
 import ManageOrderRow from './ManageOrderRow';
 
 const ManageOrders = () => {
 
-    const { data: ordres, isLoading } = useQuery('order', () => fetch('http://localhost:5000/booking', {
+    const { data: ordres, isLoading } = useQuery('order', () => fetch('https://frozen-gorge-46569.herokuapp.com/booking', {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
