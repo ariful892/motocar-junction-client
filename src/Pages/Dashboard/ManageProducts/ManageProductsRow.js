@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
+import Loading from '../../Shared/Loading';
 
-const ManageProductsRow = ({ part, index }) => {
+const ManageProductsRow = ({ part, refetch, index }) => {
 
     const { _id, name, img, price, minimumOrder, availableQuantity } = part;
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
     const handleRemove = id => {
-        fetch('', {
+        setIsLoading(true)
+        fetch(`http://localhost:5000/part/${id}`, {
             method: 'Delete',
             headers: {
                 'content-type': 'application.json'
@@ -15,6 +22,8 @@ const ManageProductsRow = ({ part, index }) => {
         })
             .then(res => res.json()).then(data => {
                 console.log(data);
+                toast(`${name} is removed`);
+                refetch();
                 setIsLoading(false);
             });
     }
@@ -23,8 +32,8 @@ const ManageProductsRow = ({ part, index }) => {
         <tr>
             <th>{index}</th>
             <td>
-                <div class="avatar">
-                    <div class="w-12 rounded">
+                <div className="avatar">
+                    <div className="w-12 rounded">
                         <img src={img} alt="Tailwind-CSS-Avatar-component" />
                     </div>
                 </div>

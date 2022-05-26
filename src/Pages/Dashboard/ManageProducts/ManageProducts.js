@@ -5,7 +5,7 @@ import ManageProductsRow from './ManageProductsRow';
 
 const ManageProducts = () => {
 
-    const { data: parts, isLoading } = useQuery('parts', () => fetch('http://localhost:5000/part', {
+    const { data: parts, isLoading, refetch } = useQuery('parts', () => fetch('http://localhost:5000/part', {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -37,6 +37,7 @@ const ManageProducts = () => {
                             parts.map((part, index) => <ManageProductsRow
                                 key={part._id}
                                 part={part}
+                                refetch={refetch}
                                 index={index + 1}
                             ></ManageProductsRow>)
                         }
