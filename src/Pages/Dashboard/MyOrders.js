@@ -15,7 +15,7 @@ const MyOrders = () => {
     const navigate = useNavigate();
 
 
-    const { data: orders, isLoading, refetch } = useQuery(['order', user.email], () => fetch(`http://localhost:5000/booking?email=${user.email}`, {
+    const { data: orders, isLoading, refetch } = useQuery(['order', user.email], () => fetch(`http://localhost:5000/booking/${user.email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

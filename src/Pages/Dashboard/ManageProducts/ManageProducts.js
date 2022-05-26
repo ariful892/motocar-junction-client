@@ -1,12 +1,11 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import Loading from '../../Shared/Loading';
-import ManageOrderRow from './ManageOrderRow';
+import ManageProductsRow from './ManageProductsRow';
 
-const ManageOrders = () => {
+const ManageProducts = () => {
 
-    const { data: ordres, isLoading } = useQuery('order', () => fetch('http://localhost:5000/booking', {
+    const { data: parts, isLoading } = useQuery('parts', () => fetch('http://localhost:5000/part', {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -19,26 +18,27 @@ const ManageOrders = () => {
 
     return (
         <div>
-            <h2>Manage Orders {ordres.length}</h2>
+            <h2 className='text-2xl text-secondary my-3'>Manage Products</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
-                            <th>Address</th>
-                            <th>Phone</th>
+                            <th>Image</th>
                             <th>Product</th>
-                            <th>Total Order</th>
+                            <th>Price</th>
+                            <th>Minimum Order</th>
+                            <th>Available Product</th>
+                            <th>Remove Product</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            ordres.map((order, index) => <ManageOrderRow
-                                key={order._id}
-                                order={order}
+                            parts.map((part, index) => <ManageProductsRow
+                                key={part._id}
+                                part={part}
                                 index={index + 1}
-                            ></ManageOrderRow>)
+                            ></ManageProductsRow>)
                         }
                     </tbody>
                 </table>
@@ -47,4 +47,4 @@ const ManageOrders = () => {
     );
 };
 
-export default ManageOrders;
+export default ManageProducts;

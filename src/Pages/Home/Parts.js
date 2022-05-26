@@ -4,7 +4,12 @@ import Part from './Part';
 
 const Parts = () => {
 
-    const { data: parts, isLoading } = useQuery('part', () => fetch('http://localhost:5000/part').then(res => res.json()));
+    const { data: parts, isLoading } = useQuery('part', () => fetch('http://localhost:5000/part', {
+        method: 'GET',
+        headers: {
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => res.json()));
 
     if (isLoading) {
         return <Loading></Loading>

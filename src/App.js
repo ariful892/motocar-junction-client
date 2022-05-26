@@ -14,10 +14,10 @@ import RequireAuth from './Pages/Login/RequireAuth';
 import MyOrders from './Pages/Dashboard/MyOrders';
 import AddReview from './Pages/Dashboard/AddReview';
 import MyProfile from './Pages/Dashboard/MyProfile';
-import AddProduct from './Pages/Dashboard/AddProduct';
+import AddProduct from './Pages/Dashboard/AddProduct/AddProduct';
 import ManageOrders from './Pages/Dashboard/ManageOrders/ManageOrders';
 import ManageUsers from './Pages/Dashboard/ManageUsers/ManageUsers';
-import ManageProducts from './Pages/Dashboard/ManageProducts';
+import ManageProducts from './Pages/Dashboard/ManageProducts/ManageProducts';
 import Payment from './Pages/Dashboard/Payment';
 import RequireAdmin from './Pages/Login/RequireAdmin';
 
