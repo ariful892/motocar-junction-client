@@ -2,7 +2,7 @@ import React from 'react';
 
 const Report = () => {
     return (
-        <div className="hero">
+        <div className="hero my-24">
             <div className="hero-content flex-col lg:flex-row">
                 <div className="text-center lg:text-left">
                     <h1 className="text-3xl text-primary font-bold">Report to Admin!</h1>
@@ -14,7 +14,7 @@ const Report = () => {
                             <label className="label">
                                 <span className="label-text">Report</span>
                             </label>
-                            <input type="text" placeholder="Write your issues here" className="input input-bordered" />
+                            <textarea type="text" placeholder="Write your issues here" className="input input-bordered" />
                         </div>
 
                         <div className="form-control mt-6">

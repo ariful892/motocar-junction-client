@@ -6,7 +6,7 @@ const Banner = () => {
         <div>
             <div className="hero min-h-screen bg-gradient-to-r from-primary to-secondary">
                 <div className="hero-content flex-col lg:flex-row-reverse ">
-                    <img src={banner} className="max-w-sm lg:w-96 rounded-lg shadow-2xl rounded-full " alt='Car' />
+                    <img src={banner} className="max-w-sm rounded-lg shadow-2xl rounded-full" alt='Car' />
                     <div className='text-white lg:w-full '>
 
                         <h1 className="text-5xl font-bold">The <span className='text-secondary'>Motocar</span> Junction</h1>
