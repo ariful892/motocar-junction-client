@@ -9,8 +9,8 @@ const MyPortfolio = () => {
         <div className='my-12'>
             <h2 className='text-primary text-3xl mb-12'>My Portfolio</h2>
             <div>
-                <div class="avatar">
-                    <div class="w-24 rounded-full">
+                <div className="avatar">
+                    <div className="w-24 rounded-full">
                         <img src={profile} alt='Arif' />
                     </div>
                 </div>
