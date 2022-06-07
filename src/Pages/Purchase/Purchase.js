@@ -64,6 +64,7 @@ const Purchase = () => {
         const phone = event.target.phone.value;
         const partsName = part.name;
         const orderQuantity = part.minimumOrder;
+        const price = part.price;
 
         const booking = {
             name,
@@ -72,7 +73,8 @@ const Purchase = () => {
             phone,
             partId,
             partsName,
-            minimumOrder
+            price,
+            orderQuantity
         }
 
         console.log(booking);
