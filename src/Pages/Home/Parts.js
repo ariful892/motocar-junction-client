@@ -5,7 +5,7 @@ import Part from './Part';
 const Parts = () => {
 
 
-    const { data: parts, isLoading } = useQuery('part', () => fetch('https://frozen-gorge-46569.herokuapp.com/part/slice', {
+    const { data: parts, isLoading } = useQuery('part', () => fetch('https://motocar-junction-server.vercel.app/part/slice', {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

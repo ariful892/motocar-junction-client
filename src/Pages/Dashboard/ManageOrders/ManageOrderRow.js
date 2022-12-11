@@ -2,7 +2,7 @@ import React from 'react';
 
 const ManageOrderRow = ({ order, index }) => {
 
-    const { name, address, phone, partsName, minimumOrder } = order;
+    const { name, address, phone, partsName, orderQuantity } = order;
 
     return (
         <tr>
@@ -11,7 +11,7 @@ const ManageOrderRow = ({ order, index }) => {
             <td>{address}</td>
             <td>{phone}</td>
             <td>{partsName}</td>
-            <td>{minimumOrder}</td>
+            <td>{orderQuantity}</td>
 
         </tr>
     );

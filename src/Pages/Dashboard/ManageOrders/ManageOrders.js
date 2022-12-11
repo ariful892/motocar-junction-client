@@ -5,7 +5,7 @@ import ManageOrderRow from './ManageOrderRow';
 
 const ManageOrders = () => {
 
-    const { data: ordres, isLoading } = useQuery('order', () => fetch('https://frozen-gorge-46569.herokuapp.com/booking', {
+    const { data: orders, isLoading } = useQuery('order', () => fetch('https://frozen-gorge-46569.herokuapp.com/booking', {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -33,7 +33,7 @@ const ManageOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            ordres.map((order, index) => <ManageOrderRow
+                            orders.map((order, index) => <ManageOrderRow
                                 key={order._id}
                                 order={order}
                                 index={index + 1}

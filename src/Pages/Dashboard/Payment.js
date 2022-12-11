@@ -25,7 +25,7 @@ const Payment = () => {
     }
 
     if (order) {
-        console.log(order);
+        console.log('Order', order);
     }
 
 
@@ -35,7 +35,7 @@ const Payment = () => {
                 <h2 className='text-secondary text-2xl my-5 '>Complete your payment</h2>
                 <div className="card flex justify-center w-50 max-w-md bg-base-100 shadow-xl my-12">
                     <div className="card-body ">
-                        <p className="text-success font-bold">Hello, {order.name}</p>
+                        <p className="text-success font-bold">Hello, {bookingId}</p>
                         <h2 className="card-title">Your booking parts is {order.partsName}</h2>
                         <p>Complete your payment to get the product.</p>
                     </div>

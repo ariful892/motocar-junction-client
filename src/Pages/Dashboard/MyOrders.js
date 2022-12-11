@@ -15,7 +15,7 @@ const MyOrders = () => {
     const navigate = useNavigate();
 
 
-    const { data: orders, isLoading, refetch } = useQuery(['order', user.email], () => fetch(`https://frozen-gorge-46569.herokuapp.com/booking?email=${user.email}`, {
+    const { data: orders, isLoading, refetch } = useQuery(['order', user.email], () => fetch(`https://frozen-gorge-46569.herokuapp.com/booking/${user.email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -48,6 +48,7 @@ const MyOrders = () => {
                             <th>Address</th>
                             <th>Phone</th>
                             <th>Product</th>
+                            <th>Price</th>
                             <th>Payment</th>
                         </tr>
                     </thead>

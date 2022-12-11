@@ -8,7 +8,7 @@ import Loading from '../Shared/Loading';
 
 const Login = () => {
 
-    const [signInWithGoogle, googleUser, googlrLoading, googleError] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [
         signInWithEmailAndPassword,
         user,
@@ -35,7 +35,7 @@ const Login = () => {
         loginError = <p className='text-red-500'> {error?.message || googleError?.message}</p>;
     }
 
-    if (loading || googlrLoading) {
+    if (loading || googleLoading) {
         return <Loading></Loading>
     }
 
